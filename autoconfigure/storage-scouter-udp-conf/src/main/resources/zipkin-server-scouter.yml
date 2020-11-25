@@ -1,5 +1,8 @@
 # When enabled, this allows shorter env properties (ex -Dspring.profiles.active=scouter)
 zipkin:
+  internal:
+    module:
+      scouter: zipkin.autoconfigure.storage.scouter.ZipkinScouterStorageAutoConfiguration
   storage:
     scouter:
       debug: ${SCOUTER_DEBUG:false}
