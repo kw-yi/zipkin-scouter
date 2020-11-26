@@ -20,11 +20,11 @@ Each module will also have different minimum variables that need to be set.
 Here's an example of integrating the scouter Collector.
 
 ### Step 1: Download zipkin-server jar
-Download the [latest released server](https://search.maven.org/remote_content?g=io.zipkin&a=zipkin-server&v=2.12.9&c=exec) as zipkin.jar:
+Download the [latest released server](https://search.maven.org/remote_content?g=io.zipkin&a=zipkin-server&v=LATEST&c=exec) as zipkin.jar:
 
 ```
 cd /tmp
-wget -O zipkin.jar 'https://search.maven.org/remote_content?g=io.zipkin.java&a=zipkin-server&v=2.12.9&c=exec'
+curl -sSL https://zipkin.io/quickstart.sh | bash -s
 ```
 
 ### Step 2: Download the latest zipkin-storage-scouter jar
@@ -41,6 +41,7 @@ short environment variables similar to other [Zipkin integrations](https://githu
 
 ``` bash
 cd /tmp
+ZIPKIN_INTERNAL_MODULE_SCOUTER=zipkin.autoconfigure.storage.scouter.ZipkinScouterStorageAutoConfiguration \
 SCOUTER_COLLECTOR_ADDR=127.0.0.1 \
 SCOUTER_COLLECTOR_PORT=6100 \
 SCOUTER_SERVICE_MAPS_OJB_TYPE= \
