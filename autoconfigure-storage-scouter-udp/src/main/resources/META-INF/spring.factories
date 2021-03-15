@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-zipkin.autoconfigure.storage.scouter.ZipkinScouterStorageAutoConfiguration
+zipkin.autoconfigure.storage.scouter.ZipkinStorageScouterAutoConfiguration

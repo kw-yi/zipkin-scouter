@@ -2,15 +2,15 @@
 zipkin:
   internal:
     module:
-      scouter: zipkin.autoconfigure.storage.scouter.ZipkinScouterStorageAutoConfiguration
+      scouter: zipkin.autoconfigure.storage.scouter.ZipkinStorageScouterAutoConfiguration
   storage:
     scouter:
       debug: ${SCOUTER_DEBUG:false}
       # Scouter collector address
-      scouter-collector-address: ${SCOUTER_COLLECTOR_ADDR:127.0.0.1}
+      address: ${SCOUTER_COLLECTOR_ADDR:127.0.0.1}
       # Scouter collector port
-      scouter-collector-port: ${SCOUTER_COLLECTOR_PORT:6100}
-      scouter-udp-packet-max-bytes: ${SCOUTER_UDP_PACKET_MAX_BYTES:60000}
+      port: ${SCOUTER_COLLECTOR_PORT:6100}
+      udp-packet-max-bytes: ${SCOUTER_UDP_PACKET_MAX_BYTES:60000}
       tag-map:
         # tag mapping from zipkin to scouter xlog column. (comma separated multi-tags supported.)
         text1: ${SCOUTER_TAG_MAP_TEXT1:spring.instance_id}
