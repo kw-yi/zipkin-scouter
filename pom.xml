@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.3</version>
+    </parent>
 
     <groupId>io.github.scouter-project</groupId>
     <artifactId>zipkin-scouter-parent</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <packaging>pom</packaging>
 
     <name>Zipkin Scouter (Parent)</name>
@@ -15,7 +20,7 @@
 
     <modules>
         <module>storage-scouter-udp</module>
-        <module>autoconfigure</module>
+        <module>autoconfigure-storage-scouter-udp</module>
     </modules>
 
     <licenses>
@@ -54,19 +59,14 @@
     </scm>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+        <java.version>1.8</java.version>
 
         <main.java.version>1.8</main.java.version>
         <main.signature.artifact>java18</main.signature.artifact>
         <main.basedir>${project.basedir}</main.basedir>
 
-        <zipkin.version>2.11.7</zipkin.version>
-        <slf4j.version>1.7.25</slf4j.version>
-        <log4j.version>2.11.1</log4j.version>
-
-        <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
-        <scouter.version>2.5.0</scouter.version>
+        <zipkin.version>2.23.2</zipkin.version>
+        <scouter.version>2.10.2</scouter.version>
     </properties>
     
     <distributionManagement>
@@ -88,11 +88,6 @@
                 <version>${zipkin.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.zipkin.zipkin2</groupId>
-                <artifactId>zipkin-collector</artifactId>
-                <version>${zipkin.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>io.github.scouter-project</groupId>
                 <artifactId>scouter-common</artifactId>
                 <version>${scouter.version}</version>
@@ -104,43 +99,11 @@
             </dependency>
             <dependency>
                 <groupId>io.github.scouter-project</groupId>
-                <artifactId>zipkin-autoconfigure-scouter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.github.scouter-project</groupId>
                 <artifactId>zipkin-autoconfigure-storage-scouter-udp</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>io.github.scouter-project</groupId>
-            <artifactId>scouter-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.zipkin.zipkin2</groupId>
-            <artifactId>zipkin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.11.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <build>
         <pluginManagement>
@@ -148,45 +111,13 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <layoutFactory implementation="zipkin.layout.ZipkinLayoutFactory">
-                            <name>zipkin</name>
-                        </layoutFactory>
-                        <classifier>module</classifier>
-                    </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>io.zipkin.layout</groupId>
-                            <artifactId>zipkin-layout-factory</artifactId>
-                            <version>0.0.2</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.0.1</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.2.0</version>
                     <configuration>
+                        <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
                         <additionalJOption>-Xdoclint:none</additionalJOption>
                     </configuration>
                     <executions>
@@ -201,7 +132,7 @@
                 <plugin>
                     <groupId>org.sonatype.plugins</groupId>
                     <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>1.6.7</version>
+                    <version>1.6.8</version>
                     <extensions>true</extensions>
                     <configuration>
                         <serverId>ossrh</serverId>
@@ -212,7 +143,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
-                    <version>1.5</version>
+                    <version>1.6</version>
                     <executions>
                         <execution>
                             <id>sign-artifacts</id>
@@ -228,10 +159,6 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
             <plugin>
@@ -244,6 +171,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

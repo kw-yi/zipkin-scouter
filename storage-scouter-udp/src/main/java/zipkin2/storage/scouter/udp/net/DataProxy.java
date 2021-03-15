@@ -331,12 +331,12 @@ public class DataProxy {
         pack.tags = MapValue.ofStringValueMap(span.tags());
 
         String serviceName = StringUtil.emptyToDefault(span.name(), "").trim();
-        if (pack.spanType == SpanTypes.SERVER || pack.spanType == SpanTypes.CLIENT) {
+        if (pack.spanType == SpanTypes.CLIENT || pack.spanType == SpanTypes.SERVER) {
             if (pack.tags.getText("sql.query") != null) {
                 //serviceName = pack.tags.getText("sql.query").replaceAll("[\r\n]+", " ");
                 serviceName = WHITE_SPACE.matcher(pack.tags.getText("sql.query")).replaceAll(" ");
             } else if (pack.tags.getText("http.path") != null) {
-                serviceName = pack.tags.getText("http.path") + "<" + pack.tags.getText("http.method") + ">";
+                serviceName = pack.tags.getText("http.method") + " " + pack.tags.getText("http.path");
             }
         }
         pack.name = sendServiceName(serviceName);
