@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ConfigurationProperties("zipkin.storage.scouter")
-public class ZipkinStorageScouterProperties {
+public class ZipkinScouterStorageProperties {
     /**
      * Scouter Collector UDP address; defaults to localhost:6100
      */

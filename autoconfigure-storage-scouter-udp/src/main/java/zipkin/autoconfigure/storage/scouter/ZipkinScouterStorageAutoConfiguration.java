@@ -32,15 +32,15 @@ import zipkin2.storage.scouter.udp.ScouterUDPStorage;
 import java.util.logging.Logger;
 
 @Configuration
-@EnableConfigurationProperties(ZipkinStorageScouterProperties.class)
+@EnableConfigurationProperties(ZipkinScouterStorageProperties.class)
 @ConditionalOnProperty(name = "zipkin.storage.type", havingValue = "scouter")
 @ConditionalOnMissingBean(StorageComponent.class)
-public class ZipkinStorageScouterAutoConfiguration {
-    private static final Logger logger = Logger.getLogger(ZipkinStorageScouterAutoConfiguration.class.getName());
+public class ZipkinScouterStorageAutoConfiguration {
+    private static final Logger logger = Logger.getLogger(ZipkinScouterStorageAutoConfiguration.class.getName());
 
     @Bean
     @ConditionalOnMissingBean
-    StorageComponent storage(ZipkinStorageScouterProperties properties, @Value("${zipkin.storage.strict-trace-id:true}") boolean strictTraceId) {
+    StorageComponent storage(ZipkinScouterStorageProperties properties, @Value("${zipkin.storage.strict-trace-id:true}") boolean strictTraceId) {
         logger.info("[zipkin-scouter-storage] loading.");
         ScouterUDPStorage.Builder builder = ScouterUDPStorage.newBuilder();
         if (StringUtils.hasText(properties.getAddress())) {

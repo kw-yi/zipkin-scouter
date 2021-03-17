@@ -2,7 +2,7 @@
 zipkin:
   internal:
     module:
-      scouter: zipkin.autoconfigure.storage.scouter.ZipkinStorageScouterAutoConfiguration
+      scouter: zipkin.autoconfigure.storage.scouter.ZipkinScouterStorageAutoConfiguration
   storage:
     scouter:
       debug: ${SCOUTER_DEBUG:false}

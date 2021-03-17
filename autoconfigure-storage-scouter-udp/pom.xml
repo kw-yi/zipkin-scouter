@@ -49,16 +49,7 @@
                         <name>zipkin</name>
                     </layoutFactory>
                     <classifier>module</classifier>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                        <exclude>
-                            <groupId>io.zipkin.zipkin2</groupId>
-                            <artifactId>zipkin</artifactId>
-                        </exclude>
-                    </excludes>
+                    <excludeGroupIds>io.zipkin.zipkin2,org.springframework,org.springframework.boot</excludeGroupIds>
                 </configuration>
                 <dependencies>
                     <dependency>

@@ -41,7 +41,6 @@ short environment variables similar to other [Zipkin integrations](https://githu
 
 ``` bash
 cd /tmp
-ZIPKIN_INTERNAL_MODULE_SCOUTER=zipkin.autoconfigure.storage.scouter.ZipkinScouterStorageAutoConfiguration \
 SCOUTER_COLLECTOR_ADDR=127.0.0.1 \
 SCOUTER_COLLECTOR_PORT=6100 \
 SCOUTER_SERVICE_MAPS_OJB_TYPE= \
