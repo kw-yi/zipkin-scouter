@@ -13,7 +13,7 @@
     <version>1.3.0</version>
     <name>Zipkin Storage: Scouter Sample</name>
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <spring-cloud.version>2020.0.1</spring-cloud.version>
     </properties>
     <dependencies>

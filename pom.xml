@@ -125,7 +125,6 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                         </configuration>
                     </execution>
