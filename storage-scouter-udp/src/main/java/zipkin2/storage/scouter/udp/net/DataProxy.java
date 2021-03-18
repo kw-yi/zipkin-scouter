@@ -355,6 +355,7 @@ public class DataProxy {
         xlog.elapsed = pack.elapsed;
         xlog.error = pack.error;
         xlog.xType = XLogTypes.ZIPKIN_SPAN;
+        xlog.ipaddr = pack.remoteEndpointIp;
 
         String loginColumnString = map1stMatchingTagNames(pack, conf.getLoginTag());
         if (StringUtil.isNotEmpty(loginColumnString)) {

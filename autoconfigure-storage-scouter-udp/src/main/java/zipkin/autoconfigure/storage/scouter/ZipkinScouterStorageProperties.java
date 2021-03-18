@@ -30,8 +30,8 @@ public class ZipkinScouterStorageProperties {
      */
     private boolean debug;
     private String address;
-    private int port;
-    private int udpPacketMaxBytes;
+    private int port = 6100;
+    private int udpPacketMaxBytes = 60000;
     private Map<String, String> tagMap = new HashMap<>();
     private String serviceMapsToObjType;
 

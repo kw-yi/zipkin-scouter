@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
 
     <name>Zipkin Scouter (Parent)</name>
-    <description>Zipkin Scouter (Parent)</description>
+    <description>Zipkin Scouter</description>
     <url>https://github.com/scouter-project/zipkin-scouter</url>
 
     <modules>
@@ -69,7 +69,7 @@
         <zipkin.version>2.23.2</zipkin.version>
         <scouter.version>2.10.2</scouter.version>
     </properties>
-    
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -183,10 +183,10 @@
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-gpg-plugin</artifactId>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 </project>
