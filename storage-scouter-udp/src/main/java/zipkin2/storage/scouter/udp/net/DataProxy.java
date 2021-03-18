@@ -329,7 +329,6 @@ public class DataProxy {
         }
 
         pack.tags = MapValue.ofStringValueMap(span.tags());
-        pack.tags.remove("hostname");
 
         String serviceName = StringUtil.emptyToDefault(span.name(), "").trim();
         if (pack.spanType == SpanTypes.CLIENT || pack.spanType == SpanTypes.SERVER) {
