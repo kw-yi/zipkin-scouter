@@ -3,7 +3,6 @@ package zipkin2.storage.scouter;
 import scouter.util.StringUtil;
 import zipkin2.storage.scouter.udp.ScouterConfig;
 
-import java.util.Locale;
 import java.util.Optional;
 
 /**
