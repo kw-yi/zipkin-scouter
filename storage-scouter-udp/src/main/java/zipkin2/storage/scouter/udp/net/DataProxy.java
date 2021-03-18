@@ -123,7 +123,7 @@ public class DataProxy {
     private static IntLongLinkedMap objSentMap = new IntLongLinkedMap().setMax(1000);
 
     public static void registerZipkinObj(Span span, ScouterConfig conf) {
-        String objName = ScouterConstants.toScouterObjName(span.localServiceName());
+        String objName = ScouterConstants.toScouterObjName(span.tags().get("hostname"), span.localServiceName());
         int objHash = HashUtil.hash(objName);
 
         long registered = objSentMap.get(objHash);
@@ -308,7 +308,7 @@ public class DataProxy {
         Endpoint localEndPoint = span.localEndpoint();
         Endpoint remoteEndPoint = span.remoteEndpoint();
 
-        pack.objHash = sendObjName(ScouterConstants.toScouterObjName(span.localServiceName()));
+        pack.objHash = sendObjName(ScouterConstants.toScouterObjName(span.tags().get("hostname"), span.localServiceName()));
         pack.localEndpointServiceName = sendObjName(span.localServiceName());
         pack.remoteEndpointServiceName = sendObjName(span.remoteServiceName());
         pack.localEndpointIp = localEndPoint != null ? localEndPoint.ipv4Bytes() : null;

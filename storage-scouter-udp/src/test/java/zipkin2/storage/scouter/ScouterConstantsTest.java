@@ -16,7 +16,9 @@ public class ScouterConstantsTest {
         String name = "test-name";
         String expected = "/ZIPKIN/test-name";
 
-        Assertions.assertEquals(expected, ScouterConstants.toScouterObjName(name));
+        Assertions.assertEquals(expected, ScouterConstants.toScouterObjName("", name));
+        Assertions.assertEquals(expected, ScouterConstants.toScouterObjName(null, name));
+        Assertions.assertEquals("/LOCALHOST/test-name", ScouterConstants.toScouterObjName("LOCALHOST", name));
     }
 
     @Test
