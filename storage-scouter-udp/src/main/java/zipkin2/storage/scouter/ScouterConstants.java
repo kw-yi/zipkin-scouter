@@ -17,7 +17,7 @@ public class ScouterConstants {
     public static String toScouterObjName(String name, String hostname) {
         return Optional.ofNullable(name)
                 .filter(StringUtil::isNotEmpty)
-                .map(localServiceName -> StringUtil.isEmpty(hostname) ? OBJ_PREFIX + localServiceName : "/" + hostname + "/" + localServiceName)
+                .map(localServiceName -> StringUtil.isNotEmpty(hostname) ? "/" + hostname + "/" + localServiceName : OBJ_PREFIX + localServiceName)
                 .orElse(ScouterConstants.OBJ_PREFIX + ScouterConstants.UNKNOWN);
     }
 
